@@ -20,7 +20,7 @@ These events are the most basic and important part of MEI.
 
 This is how you encode a single note in MEI:
  
-{% include basic-examples/basic_note.txt %}
+{% include basic-examples/basic_note.html %}
 
 As you can see, the most relevant information is split into three different
 attributes for easier processing. Every note requires to have a pitch name. The
@@ -46,7 +46,7 @@ In MEI Basic, chords strictly share a duration, that is, all notes need to have 
 same duration. Accordingly, the **@dur** (and **@dots**, if necessary)
 attribute(s) are a property of the chord, but not the individual notes anymore.
 
-{% include basic-examples/basic_chord.txt %}
+{% include basic-examples/basic_chord.html %}
 
 MEI Basic makes no assumption on the order of child notes in a chord – you can start
 either from the highest or lowest pitch, or mix them as you like.
@@ -56,7 +56,7 @@ either from the highest or lowest pitch, or mix them as you like.
 The duration of rests is specified the same way as for notes or chords, that is,
 using **@dur**, and, if necessary, **@dots**.
 
-{% include basic-examples/basic_rest.txt %}
+{% include basic-examples/basic_rest.html %}
 
 Do I need to say more?
 

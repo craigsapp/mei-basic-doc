@@ -1,6 +1,5 @@
 ---
 title: Introduction
-verovio: false
 author: Johannes Kepper
 creation_date: 9 May 2017
 last_updated: 6 Oct 2017

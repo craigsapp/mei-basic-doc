@@ -9,13 +9,26 @@
 	<script src="/resources/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/resources/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
 
-	{% if page.verovio == true %}
+	{% if page.verovio %}
 		{% if site.local == true %}
 			<script src="{{site.baseurl}}/js/local/verovio-toolkit.js"></script>
 		{% else %}
 			<script src="http://verovio-script.humdrum.org/scripts/verovio-toolkit.js"></script>
 		{% endif %}
 		{% include verovio_support_functions.html %}
+	{% elsif page.verovio2 %}
+		{% include verovio2.html %}
 	{% endif %}
+
+<style>
+
+#grid.container h4 {
+	margin-top: 30px;
+	color: orange;
+}
+
+</style>
+
+
 </head>
 
