@@ -1,0 +1,137 @@
+
+
+<!--
+
+{% comment %}
+	vim: ts=3
+
+	FILE: _includes/sidebar.html
+
+	This file is loaded into webpages from the file:
+		_layouts/default.html
+	if the page source is in the directory "mei-basic".  This is
+	controlled by a variable called page.page_sequence which is
+	defined in the _config.yml file.  The page_sequence variable
+	contains a list of the pages in the tutorial ordered by how
+	they should be progressed through.
+
+	The following code extracts the index of the current page
+	from the page.page_sequence list.  This is used to construct
+	the next/previous page links at the bottom of tutorial pages.
+{% endcomment %}
+
+{% for item in page.page_sequence %}
+	{% if page.url contains item.tag %}
+		{% assign basicindex = forloop.index0 %}
+	{% endif %}
+{% endfor %}
+{% assign nextindex  = basicindex | plus: 1 %}
+{% assign previndex  = basicindex | plus: -1 %}
+{% if previndex < 0 %}
+	{% assign previndex = page.page_sequence.size | plus: -1 %}
+{% endif %}
+{% if nextindex == page.page_sequence.size %}
+	{% assign nextindex = 0 %}
+{% endif %}
+{% assign nexturl = page.page_sequence[nextindex].tag | append: ".html"  %}
+{% assign prevurl = page.page_sequence[previndex].tag | append: ".html"  %}
+{% assign nexttitle = page.page_sequence[nextindex].title  %}
+{% assign prevtitle = page.page_sequence[previndex].title  %}
+
+page index is:	{{ basicindex }} {{ page.page_sequence[basicindex] }}
+next index is:	{{ nextindex }} {{ page.page_sequence[nextindex] }}
+prev index is:	{{ previndex }} {{ page.page_sequence[previndex] }}
+previous url:	{{ prevurl }}
+next url:	{{ nexturl }}
+previous title:	{{ prevtitle }}
+next title:	{{ nexttitle }}
+
+
+-->
+
+{% assign category = "" %}
+{% assign pagecat = "" %}
+
+<div id="sidebar" class="docs-sidebar column col-3 col-sm-12">
+	<ul class="docs-nav nav">
+
+{% for item in page.page_sequence %}
+	{% assign pageurl = item.tag | append: ".html" %}
+	{% assign pagetitle = item.title %}
+	{% assign pagecat = item.category %}
+	{% unless pagecat %}
+		{% assign pagecat = "" %}
+	{% endunless %}
+	{% if page.url contains item.tag %}
+		{% assign onpage = "highlight" %}
+	{% else %}
+		{% assign onpage = "" %}
+	{% endif %}
+
+	{% if category == pagecat %}
+<!-- AAA category "{{category}}" size: {{category.size}} pagecat "{{pagecat}} size: {{pagecat.size}}" -->
+		{% comment %} Current item is in previous category so no category change {% endcomment %}
+		{% if category == "" %}
+			{% comment %} A top-level link {% endcomment %}
+			<li class="nav-item">
+				<a class="{{ onpage }}"href="{{ pageurl }}">{{ pagetitle }}</a>
+			</li>
+		{% else %}	
+			{% comment %} A secondary-level link in an existing category {% endcomment %}
+<!-- BBB category "{{category}}" pagecat "{{pagecat}}" -->
+			<li class="nav-item">
+				<a class="{{ onpage }}" href="{{ pageurl }}">{{ pagetitle }}</a>
+			</li>
+		{% endif %}
+	{% elsif pagecat == "" %}
+		{% comment %} Turn off previous category list and display top-level link {% endcomment %}
+<!-- CCC category "{{category}}" pagecat "{{pagecat}}" -->
+		</ul></li>
+		<li class="nav-item">
+			<a class="{{ onpage }}" href="{{ pageurl }}">{{ pagetitle }}</a>
+		</li>
+	{% elsif category == "" %}
+		{% comment %} Switch to new category list without turning off previous category {% endcomment %}
+<!-- DDD category "{{category}}" pagecat "{{pagecat}}" -->
+		<li class="nav-item">
+			<a href="{{ pageurl }}"><strong>{{ pagecat }}</strong></a>
+			<ul class="nav">
+				<li class="nav-item">
+					<a class="{{ onpage }}" href="{{ pageurl }}">{{ pagetitle }}</a>
+				</li>
+	{% else %}
+<!-- EEE category "{{category}}" pagecat "{{pagecat}}" -->
+		{% comment %} Switch to new category list {% endcomment %}
+			</ul>
+		</li>
+		<li class="nav-item">
+			<a href="{{ pageurl }}">{{ pagecat }}</a>
+			<ul class="nav">
+				<li class="nav-item">
+					<a class="{{ onpage }}" href="{{ pageurl }}">{{ pagetitle }}</a>
+				</li>
+	{% endif %}
+	{% assign category = pagecat %}
+{% endfor %}
+
+	</ul>
+</div>
+
+
+
+<style>
+
+.highlight {
+	color: black !important;
+	text-shadow: 0px 0px 10px #cc0000;
+	opacity: 0.6;
+}
+
+.nav .nav-item a {
+	padding: 0 !important;
+}
+
+</style>
+
+
+

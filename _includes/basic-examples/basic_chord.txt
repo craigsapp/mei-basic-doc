@@ -1,0 +1,17 @@
+
+
+{% include verovio.html
+	humdrum-visible="false"
+	source="chord"
+	scale="50"
+	pageWidth="1000"
+	tabsize="10"
+%}
+
+<script type="application/x-humdrum" id="chord">**kern
+4c 4e 4g
+*-
+</script>
+
+
+

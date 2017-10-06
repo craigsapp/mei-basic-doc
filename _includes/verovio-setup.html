@@ -1,0 +1,41 @@
+<script>
+
+	// Verovio setup 
+	var vrvToolkit = new verovio.toolkit();                            
+	vrvToolkit.setOptions({
+	pageHeight: 210,
+	pageWidth: 420,
+	ignoreLayout: 1,
+	border: 0,
+	scale: 35
+	});
+                            
+	// function called to show the right code
+	var showCode = function(which, id) {
+                            
+		if (which === 'excerpt') {
+			document.getElementById(id + '_excerpt_link').classList.add('active');
+			document.getElementById(id + '_full_link').classList.remove('active');
+			document.getElementById(id + '_excerpt_container').classList.remove('hide');
+			document.getElementById(id + '_full_container').classList.add('hide');
+		} else {
+			document.getElementById(id + '_excerpt_link').classList.remove('active');
+			document.getElementById(id + '_full_link').classList.add('active');
+			document.getElementById(id + '_excerpt_container').classList.add('hide');
+			document.getElementById(id + '_full_container').classList.remove('hide');
+		}
+	};
+                            
+	var loadMEI = function(id,uri) {
+		$.get('./samples/' + uri, function( fullMei ) {
+			var fullEditor = ace.edit(document.getElementById(id + '_full'));
+			fullEditor.setTheme("ace/theme/textmate");
+			fullEditor.getSession().setMode("ace/mode/xml");
+			fullEditor.setReadOnly(true);
+			fullEditor.session.setValue(fullMei);
+			var svg = vrvToolkit.renderData(fullMei + '\n ', {});
+			document.getElementById(id + '_verovio').innerHTML = svg;
+		}, 'text');
+	};
+	
+</script>

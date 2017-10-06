@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "html">
+<html>
+	{% include head.html %}
+	<body>
+		<!--
+			vim: ts=3
+		-->
+		{% include header.html %}
+		<section class="container grid-960">
+			<section class="columns">
+				{% include sidebar.html %}
+				<div class="docs-content column col-9 col-sm-12">
+					<section id="grid" class="container">
+						{{ content }}
+					</section>
+				</div>
+			</section>
+		{% include footer.html %}
+		</section>
+   	</body>
+</html>

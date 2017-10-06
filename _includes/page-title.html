@@ -1,0 +1,51 @@
+
+
+<!--
+
+{% comment %}
+	vim: ts=3
+
+	FILE: _includes/page-title.html
+
+	This file is loaded into webpages from the markdown files
+	if the page source is in the directory "mei-basic".  This is
+	controlled by a variable called page.page_sequence which is
+	defined in the _config.yml file.  The page_sequence variable
+	contains a list of the pages in the tutorial ordered by how
+	they should be progressed through.
+
+	The following code extracts the title of the current page
+	from the page.page_sequence list.  This is used to print the
+	heading title on the page.
+{% endcomment %}
+
+{% for item in page.page_sequence %}
+	{% if page.url contains item.tag %}
+		{% assign basicindex = forloop.index0 %}
+	{% endif %}
+{% endfor %}
+{% assign nextindex  = basicindex | plus: 1 %}
+{% assign previndex  = basicindex | plus: -1 %}
+{% if previndex < 0 %}
+	{% assign previndex = page.page_sequence.size | plus: -1 %}
+{% endif %}
+{% if nextindex == page.page_sequence.size %}
+	{% assign nextindex = 0 %}
+{% endif %}
+{% assign nexturl = page.page_sequence[nextindex].tag | append: ".html"  %}
+{% assign prevurl = page.page_sequence[previndex].tag | append: ".html"  %}
+{% assign pagetitle = page.page_sequence[basicindex].title  %}
+{% assign nexttitle = page.page_sequence[nextindex].title  %}
+{% assign prevtitle = page.page_sequence[previndex].title  %}
+
+page index is:	{{ basicindex }} {{ page.page_sequence[basicindex] }}
+page title:	{{ pagetitle }}
+
+
+-->
+
+### {{ pagetitle }}
+
+
+
+

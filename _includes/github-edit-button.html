@@ -1,0 +1,27 @@
+
+
+{% comment %}
+
+	_includes/github-edit-button.html
+
+	This file is included in _includes/header.html and is used to display
+	a link to the Markdown text which is used to create the HTML page.
+	A variable in the liquid header must be in the form:
+		github: mei-basic/introduction.md
+	In order for this button to be displayed.  Otherwise a button will not be shown.
+
+	There is a variables which must also be set to the Github repository
+	location in _config.yml:
+		github_editme_path: "music-encoding/mei-basic-doc/blob/gh-pages"
+
+{% endcomment %}
+
+
+{% if page.github %}
+	<a href="https://github.com/{{ site.github_editme_path }}/{{ page.github }}"" 
+		target="_blank" 
+		class="btn btn-primary">Edit on GitHub</a>
+{% endif %}
+
+
+

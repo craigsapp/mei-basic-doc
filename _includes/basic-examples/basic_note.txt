@@ -1,0 +1,17 @@
+
+
+{% include verovio.html
+	humdrum-visible="false"
+	source="nei"
+	scale="50"
+	pageWidth="1000"
+	tabsize="10"
+%}
+
+<script type="application/x-humdrum" id="nei">**kern
+4c
+*-
+</script>
+
+
+
