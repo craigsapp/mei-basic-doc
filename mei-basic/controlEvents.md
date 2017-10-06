@@ -48,6 +48,7 @@ of the notes of our example:
 {% include basic-examples/slur2.html %}
 
 
+<br/>
 As we can see there, our notes have an additional attribute <span
 class="att" scheme="TEI">xml:id</span>. This attribute is actually
 allowed on every element in MEI. The value must conform to the rules
