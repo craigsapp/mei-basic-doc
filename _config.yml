@@ -1,12 +1,33 @@
-# repository: Used for github links:
-#repository: "music-encoding/mei-basic-doc"
+# baseurl: Subdirectory location of website.  This is a jekyll variable, see:
+# https://jekyllrb.com/docs/configuration
+# This is useful to move the installation around, such as between:
+#    http://music-encoding.github.io/mei-basic-doc
+# and
+#    http://basic.music-encoding.org
+baseurl: /mei-basic-doc
+# baseurl: /
+
+# resource_dir: directory on website where resource directories are stored 
+# (css & js dirs).  You can also 
+resource_dir: /mei-basic-doc/resources
+# resource_dir: /resources
+
+
+##############################
+##
+## Github link variables
+##
+
+# repository: The Github repository used for Github edit button.
 repository: "craigsapp/mei-basic-doc"
+#repository: "music-encoding/mei-basic-doc"
 
-# directory on website where files are stored:
-install_dir: mei-basic-/doc
-
+# github_editme_path: path fragment to get to branch for files on github:
 github_editme_path: "blob/gh-pages"
-# if you're using Github, provide the basepath to the branch you've created for reviews, following the sample here. if not, leave this value blank.
+
+##
+##############################
+
 
 # topnav_title: This appears on the top navigation bar next to the home button.
 topnav_title: "MEI Basic Documentation"
