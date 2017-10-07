@@ -10,7 +10,7 @@ https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-
 Then to actually run the local webserver with the website, type:
 
 ```bash
-	./.sever
+	./.serve
 ```
 
 which is a script with this contents:
