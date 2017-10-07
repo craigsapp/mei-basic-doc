@@ -1,17 +1,22 @@
-<!--
+
+
+
+{% comment %}
+
+	file: /_includes/footer.html
    vim: ts=3
--->
+
+	This file is included by /_layouts/default.html
+	It controls the contents of the header on each page of the documentation.
+
+{% endcomment %}
+
 
 
 <section class="container">
 	<div class="divider"></div>
-
-	{% if page.page_sequence %}
-		{% include navigation_order.html %}
-	{% endif %}
-
+	{% include navigation_order.html %}
 </section>
-
 
 
 

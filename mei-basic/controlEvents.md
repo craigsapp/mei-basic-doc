@@ -1,14 +1,10 @@
 ---
-title: Slurs, Dynamics and other "Control Events"
-verovio: true
-author: Johannes Kepper
+verovio:       "true"
+author:        Johannes Kepper
 creation_date: 9 May 2017
-last_updated: 6 Oct 2017
-tags: [all, events]
-keywords: introduction
-summary: 
-github:    mei-basic/controlEvents.md
-permalink: /controlEvents.html
+last_updated:  6 Oct 2017
+github:        mei-basic/controlEvents.md
+permalink:     /controlEvents.html
 ---
 
 {% include page-title.html %}
@@ -29,7 +25,7 @@ One of the most prominent and frequently used control events in
 
 {% include verovio-example.html
 	example="basic_slur1.mei"
-	selector="slur"
+	xpath="//mei:slur"
 	scale="70"
 	excerptHeight="55"
 	fullEncodingHeight="500"
@@ -54,7 +50,7 @@ of the notes of our example:
 
 {% include verovio-example.html
 	example="basic_slur1.mei"
-	selector="note"
+	xpath="//mei:note"
 	scale="70"
 	excerptHeight="80"
 	fullEncodingHeight="500"

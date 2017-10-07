@@ -24,14 +24,14 @@
 <div class="meiSample">
 	<div class="verovio" id="{{ include.id }}_verovio"></div>
 	<div class="btn-group">
-		<button 
-				class="btn btn-sm active" 
-				id="{{ include.id }}_excerpt_link" 
+		<button
+				class="btn btn-sm active"
+				id="{{ include.id }}_excerpt_link"
 				onclick="showCode('excerpt','{{ include.id }}')">
 			Relevant Excerpt</button>
-		<button 
-				class="btn btn-sm" 
-				id="{{ include.id }}_full_link" 
+		<button
+				class="btn btn-sm"
+				id="{{ include.id }}_full_link"
 				onclick="showCode('full','{{ include.id }}')">
 			Full Encoding
 		</button>
@@ -41,9 +41,9 @@
 	<div class="excerpt" id="{{ include.id }}_excerpt_container">
 		<div class="excerptEditor" id="{{ include.id }}_excerpt">
 			<div xml:space="preserve" class="pre">
-                                 
+
 				<div class="indent1"><span data-indentation="1" class="element">&lt;slur <span class="attribute">staff=</span><span class="attributevalue">"1"</span> <span class="attribute">startid=</span><span class="attributevalue">"#note1"</span> <span class="attribute">endid=</span><span class="attributevalue">"#note2"</span>/&gt;</span></div>
-                                 
+
 				</div>
 			</div>
 		</div>
@@ -62,7 +62,7 @@ var options_{{ include.id }} = {
 	border:             0
 };
 
-loadMEI('{{ include.id }}', '{{ include.example }}' , '{{ include.selector }}', options_{{ include.id }});
+loadMEI('{{ include.id }}', '{{ include.example }}' , '{{ include.xpath }}', options_{{ include.id }});
 
 </script>
 

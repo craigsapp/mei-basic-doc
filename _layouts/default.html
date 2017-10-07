@@ -1,3 +1,22 @@
+
+
+
+{% comment %}
+
+	file: /_layouts/default.html
+	vim: ts=3
+
+	This file is the starting template for markdown files on the website.
+	/_layouts/default.html is the default template for creating webpages,
+	but adding:
+		layout: xxx
+	would use the template file /_layouts/xxx.html for building a webpage
+	from the source markdown file for the webpage.
+
+{% endcomment %}
+
+
+
 <!DOCTYPE html PUBLIC "html">
 <html>
 	{% include head.html %}
@@ -17,5 +36,8 @@
 			</section>
 		{% include footer.html %}
 		</section>
-   	</body>
+		</body>
 </html>
+
+
+

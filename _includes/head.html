@@ -1,3 +1,13 @@
+{% comment %}
+
+	file: /_includes/footer.html
+	vim: ts=3:javascript
+
+	This file is included by /_layouts/default.html
+	and it contains the contents of the <head> element for a page.
+
+{% endcomment %}
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
@@ -8,8 +18,9 @@
 	<link rel="stylesheet" href="{{ site.resource_dir}}/css/mei-basic-doc.css">
 	<script src="{{ site.resource_dir}}/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 	<script src="{{ site.resource_dir}}/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="{{ site.resource_dir}}/js/jquery.xpath.js" type="text/javascript" charset="utf-8"></script>
 
-	{% if page.verovio %}
+	{% if page.verovio == "true" %}
 		{% include verovio.html %}
 	{% endif %}
 
@@ -18,7 +29,7 @@
 
 ###########################################################################
 ##
-## styles for content -- 
+## styles for content --
 ##
 
 {% endcomment %}

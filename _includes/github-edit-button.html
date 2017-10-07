@@ -1,8 +1,10 @@
 
 
+
 {% comment %}
 
-	_includes/github-edit-button.html
+	file: _includes/github-edit-button.html
+	vim: ts=3:ft=html
 
 	This file is included in _includes/header.html and is used to display
 	a link to the Markdown text which is used to create the HTML page.
@@ -17,10 +19,11 @@
 {% endcomment %}
 
 
+
 {% if page.github %}
-	<a href="https://github.com/{{ site.repository }}/{{ site.github_editme_path }}/{{ page.github }}"" 
-		target="_blank" 
-		class="btn btn-primary">Edit on GitHub</a>
+	<a href="https://github.com/{{ site.repository }}/{{ site.github_editme_path }}/{{ page.github }}"
+		target="_blank"
+		class="btn btn-primary">{{ site.github_button_text }}</a>
 {% endif %}
 
 

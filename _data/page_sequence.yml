@@ -1,0 +1,61 @@
+#######################################################################
+#
+# Page ordering for website:
+#
+# contains a list of variables scoped to specific pages on the
+# website.  The scope: path contains the path of files which will have access
+# to the given varaibles.  Setting the path to "" will make the variables 
+# accessible to all pages.  The variables are accessed through the variable:
+#     site.data.page_sequence
+# where "_data/page_sequence.yml" is the name of the file.
+#
+# This list is also used to create the sidebar list.  The order in the list
+# is the order in the sidebar.  The pages can be grouped by topic by adding
+# a "category".  The categories have to be adjacent, of course.
+#
+# Parameters for each page entry:
+#   tag == this is the filename of the page minus ".md"
+#   title == this is the title of the page which will appear at the 
+#            top of the page contents if you have this line at the top of the page:
+#                {% include page-title.html %}
+#   category == text of the heading under which the page should be listed in
+#               the submenu.
+#
+
+
+
+- tag: "index"
+  title: "Introduction"
+
+- tag: "events" 
+  title: "Notes, Chords and Rests"
+  category: "Basics"
+
+- tag: "controlEvents" 
+  title: "Slurs, Dynamics and other Control Events"
+  category: "Basics"
+
+- tag: "artic" 
+  title: "Articulations"
+  category: "Basics"
+
+- tag: "scoreDef" 
+  title: "Definition of Score Setup"
+  category: "Score Organization"
+
+- tag: "layers" 
+  title: "Layers and Spaces"
+  category: "Score Organization"
+
+- tag: "repetition"
+  title: "Repetitions and Endings"
+  category: "Score Organization"
+
+- tag: "interactive" 
+  title: "Interactive Example"
+
+- tag: "metadata" 
+  title: "Metadata"
+
+
+

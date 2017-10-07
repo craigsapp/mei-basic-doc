@@ -1,20 +1,40 @@
 
 
 
+{% comment %}
+
+vim: ts=3
+
+This file (/_includes/verovio.html) is included on documentation pages if the
+liquid header has the variable "verovio: true" in it.
+
+This file is included via the file /_includes/head.html which is in turn loaded
+into /_layouts/default.html.
+
+These functions are used in the file /_includes/verovio-example.html which
+creates the exaples on the webpages of the documentation.
+
+{% endcomment %}
+
+
+
 <script src="resources/js/verovio-toolkit.js" type="text/javascript" charset="utf-8"></script>
 
 <script>
-// vim: ts=3
 
-// set up Verovio
-var vrvToolkit = new verovio.toolkit();                            
-
+// Initialize the verovio toolkit for the page:
+var vrvToolkit = new verovio.toolkit();
 
 
-	
-// function called to show the right code
-var showCode = function(which, id) {
-	if (which === 'excerpt') {
+
+//////////////////////////////
+//
+// showCode -- Show hide the desired full or extract of the MEI data.  This function
+//     is used by the buttons found in the page _include/verovio-example.html.
+//
+
+function showCode(type, id) {
+	if (type === 'excerpt') {
 		document.querySelector('#' + id + '_excerpt_link').classList.add('active');
 		document.querySelector('#' + id + '_full_link').classList.remove('active');
 		document.querySelector('#' + id + '_excerpt_container').classList.remove('hide');
@@ -25,14 +45,23 @@ var showCode = function(which, id) {
 		document.querySelector('#' + id + '_excerpt_container').classList.add('hide');
 		document.querySelector('#' + id + '_full_container').classList.remove('hide');
 	}
-};
-	
-var loadMEI = function(id, uri, selector, options) {
+}
+
+
+
+//////////////////////////////
+//
+// loadMEI -- Populate the webpage with the notation rendering, the MEI code and
+//     the xpath extracted excerpt.  This function is called by
+//     _includes/verovio-example.html
+//
+
+function loadMEI (id, uri, xpath, options) {
 	vrvToolkit.setOptions(options);
 
 	$.get('./samples/' + uri, function (fullMei) {
 
-
+		// Setup the ace editor for the full MEI example:
 		var fullEditor = ace.edit(document.querySelector('#' + id + '_full'));
 		fullEditor.$blockScrolling = Infinity;
 		// fullEditor.setTheme("ace/theme/textmate");
@@ -51,10 +80,11 @@ var loadMEI = function(id, uri, selector, options) {
 			console.log("Cannot find svg target:", "#" + id + '_verovio');
 		}
 
-		// Extract short example
-		if (selector) {
-			var myextract = extractSelection(fullMei, selector);
+		// Extract short example with xpath paramter:
+		if (xpath) {
+			var myextract = extractXpath(fullMei, xpath);
 
+			// Setup the ace editor for the MEI excerpt:
 			var extractEditor = ace.edit(document.querySelector('#' + id + '_excerpt'));
 			extractEditor.$blockScrolling = Infinity;
 			// extractEditor.setTheme("ace/theme/textmate");
@@ -64,35 +94,51 @@ var loadMEI = function(id, uri, selector, options) {
 			extractEditor.setShowPrintMargin(false);
 			extractEditor.renderer.setShowGutter(false);
 			extractEditor.session.setValue(myextract);
-
-			// var shorttarget = document.querySelector("#" + id + '_excerpt .pre');
-			// if (shorttarget) {
-			// 	shorttarget.textContent = myextract;
-			// } else {
-			// 	console.log("Cannot find svg target:", "#" + id + '_excerpt .pre');
-			// }
 		} else {
-			document.getElementById(id + '_excerpt_container').classList.remove('hide');
+			document.querySelector('#' + id + '_excerpt_container').classList.remove('hide');
 		}
-
 	}, 'text');
-};
+}
 
 
-function extractSelection(xmlstring, selector) {
+
+//////////////////////////////
+//
+// extractXpath -- Pull out the contents of the MEI file which match the
+//   given xpath query string.  Note that the query must include a prefix
+//   for the namespace.  Use any prefix that you want, but perhaps mei: is
+//   best, such as:
+//       //note
+//   should be changed:
+//       //mei:note
+//
+
+function extractXpath(xmlstring, xpath) {
 	var parser = new DOMParser();
 	var mydoc = parser.parseFromString(xmlstring, "application/xml");
-	var myextracts = mydoc.querySelectorAll(selector);
+	var namespace = "http://www.music-encoding.org/ns/mei";
+	var myextracts = $($(mydoc).xpath(xpath,
+			function(prefix) { console.log("NS", namespace); return namespace; }));
 	var serializer = new XMLSerializer();
 	var output = "";
 	for (var i=0; i<myextracts.length; i++) {
 		myextracts[i].setAttribute("xmlns", "");
-		output += serializer.serializeToString(myextracts[i]).replace('xmlns=""', "");
+		output += cleanXpathText(serializer.serializeToString(myextracts[i]));
 		output += "\n";
 	}
-
-
 	return output.replace(/\s+$/, "");
+}
+
+
+
+//////////////////////////////
+//
+// cleanXpathText -- remove the "xmlns" attribute and fix the indenting.
+//
+
+function cleanXpathText(input) {
+	var output = input.replace('xmlns=""', "");
+	return output;
 }
 
 
