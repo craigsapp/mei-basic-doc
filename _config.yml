@@ -2,6 +2,9 @@
 #repository: "music-encoding/mei-basic-doc"
 repository: "craigsapp/mei-basic-doc"
 
+# directory on website where files are stored:
+install_dir: mei-basic-/doc
+
 github_editme_path: "blob/gh-pages"
 # if you're using Github, provide the basepath to the branch you've created for reviews, following the sample here. if not, leave this value blank.
 
