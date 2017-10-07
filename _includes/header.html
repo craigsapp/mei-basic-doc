@@ -13,10 +13,10 @@
 
 <section class="section section-header bg-gray">
 	<section class="grid-header container grid-960">
-		<nav class="navbar">
+		<nav class="navbar myheader">
 			<section class="navbar-section">
 				<a href="#sidebar" class="btn btn-lg btn-link btn-action show-sm"><i class="icon icon-menu"></i></a>
-				<a href="index.html" class="navbar-brand mr-10">{{ site.topnav_title }}</a>
+				<a href="index.html" class="narrow navbar-brand mr-10">{{ site.topnav_title }}</a>
 				<a href="index.html" class="btn btn-link">Docs</a>
 			</section>
 			<section class="navbar-section">
@@ -31,6 +31,11 @@
 
 section.bg-gray {
 	background: #f5f5f5;
+}
+
+.narrow {
+	letter-spacing: -1px;
+	word-spacing: -1px;
 }
 
 </style>

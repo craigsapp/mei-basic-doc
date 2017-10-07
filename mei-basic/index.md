@@ -32,3 +32,47 @@ amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget
 bibendum sodales, augue velit cursus nunc.
 
 
+
+
+### Problems of the markdown approach so far:
+
+- soCalled has no direct match -> used italics
+- eg isn't possible -> just use specially formatted links?
+
+#### Possible links
+General structure of links (according to Oxygen): [text](file.url "title")
+
+- [//*:rest](eg:basic.mei)
+- [//*:measure[1]/*:slur](eg:basic_slur1.mei) doesn't understand the square brackets correctly
+- [Slur example](eg:basic_slur1.mei "//*:measure[1]/*:slur") is better as it still allows to use ticks
+- elements: [staffDef](elem:staffDef) – this could be adjusted for model classes etc. as well
+
+In the CMN chapter, we use the following elements:
+
+- div *implicitly possible through heading structure*
+- head
+- p
+- **soCalled**
+- **term**
+- ref
+- ptr
+- **gi**
+- **ident**
+- egXML
+- **att**
+- **specList**
+- **specDesc**
+- list
+- item
+- **label** *this depents on the position*
+- figure
+- graphic
+- emph
+- **expan**
+- **foreign**
+- **title** *this depends on the position*
+
+The ones written in bold have no direct match in Markdown
+
+
+

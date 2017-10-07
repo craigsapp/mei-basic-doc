@@ -21,8 +21,15 @@
 {% endcomment %}
 
 
+{% if include.minSvgHeight %}
+	{% assign minSvgHeight = include.minSvgHeight | remove: "px" %}
+{% else %}
+	{% assign minSvgHeight = 150 %}
+{% endif %}
+
+
 <div class="meiSample">
-	<div class="verovio" id="{{ include.id }}_verovio"></div>
+	<div style="min-height:{{ minSvgHeight }}px;" class="verovio" id="{{ include.id }}_verovio"></div>
 	<div class="btn-group">
 		<button
 				class="btn btn-sm active"
