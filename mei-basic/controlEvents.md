@@ -1,6 +1,6 @@
 ---
 title: Slurs, Dynamics and other "Control Events"
-verovio2: true
+verovio: true
 author: Johannes Kepper
 creation_date: 9 May 2017
 last_updated: 6 Oct 2017
@@ -27,7 +27,14 @@ One of the most prominent and frequently used control events in
 18th and 19th century music are slurs. They are encoded as follows:
 
 
-{% include basic-examples/slur.html %}
+{% include verovio-example.html
+	example="basic_slur1.mei"
+	selector="slur"
+	scale="70"
+	excerptHeight="55"
+	fullEncodingHeight="500"
+	id="slur_example_1"
+%}
 
 
 This example introduces quite a number of important concepts. Let's
@@ -45,10 +52,16 @@ element in the same file. This means we have to look at the encoding
 of the notes of our example:
 
 
-{% include basic-examples/slur2.html %}
+{% include verovio-example.html
+	example="basic_slur1.mei"
+	selector="note"
+	scale="70"
+	excerptHeight="80"
+	fullEncodingHeight="500"
+	id="slur_example_2"
+%}
 
 
-<br/>
 As we can see there, our notes have an additional attribute <span
 class="att" scheme="TEI">xml:id</span>. This attribute is actually
 allowed on every element in MEI. The value must conform to the rules
@@ -82,8 +95,9 @@ note.
 
 #### Dynamics of all kinds
 
-#### Other controlEvents
 
+
+#### Other controlEvents
 
 
 

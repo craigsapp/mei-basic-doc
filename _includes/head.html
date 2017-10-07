@@ -10,24 +10,64 @@
 	<script src="/resources/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
 
 	{% if page.verovio %}
-		{% if site.local == true %}
-			<script src="{{site.baseurl}}/js/local/verovio-toolkit.js"></script>
-		{% else %}
-			<script src="http://verovio-script.humdrum.org/scripts/verovio-toolkit.js"></script>
-		{% endif %}
-		{% include verovio_support_functions.html %}
-	{% elsif page.verovio2 %}
-		{% include verovio2.html %}
+		{% include verovio.html %}
 	{% endif %}
 
+
+{% comment %}
+
+###########################################################################
+##
+## styles for content -- 
+##
+
+{% endcomment %}
+
 <style>
+
 
 #grid.container h4 {
 	margin-top: 30px;
 	color: orange;
 }
 
+.soCalled {
+	font-style: italic;
+	color: #700030;
+
+}
+
 </style>
+
+
+
+{% comment %}
+
+
+###########################################################################
+##
+## styles for ace editor -- adjust look of ace editor.
+##
+
+{% endcomment %}
+
+<style>
+
+.ace_scroller {
+	border: 1px solid lightgray;
+	padding: 10px;
+}
+
+.ace_gutter-layer {
+	padding-top: 10px;
+}
+
+.ace-eclipse .ace_gutter-active-line {
+	background-color: transparent !important;
+}
+
+</style>
+
 
 
 </head>
