@@ -58,21 +58,33 @@ function showCode(type, id) {
 
 function loadMEI (id, uri, xpath, options) {
 	vrvToolkit.setOptions(options);
+	var fullEditor = ace.edit(document.querySelector('#' + id + '_full'));
+	var extractEditor = ace.edit(document.querySelector('#' + id + '_excerpt'));
 
 	$.get('./samples/' + uri, function (fullMei) {
 
 		// Setup the ace editor for the full MEI example:
-		var fullEditor = ace.edit(document.querySelector('#' + id + '_full'));
 		fullEditor.$blockScrolling = Infinity;
 		// fullEditor.setTheme("ace/theme/textmate");
 		fullEditor.setTheme("ace/theme/eclipse");
 		fullEditor.getSession().setMode("ace/mode/xml");
 		fullEditor.setReadOnly(true);
 		fullEditor.setShowPrintMargin(false);
+		fullEditor.setOptions({ 
+			readOnly: false, 
+			highlightActiveLine: true, 
+			highlightGutterLine: true,
+			fontSize: "0.75em"
+		})
 		fullEditor.session.setValue(fullMei);
+
+		fullEditor.getSession().on('change', function() {
+			updateSvg(id, fullEditor, options, xpath, extractEditor);
+		});
 
 		// Render and display the image:
 		var svg = vrvToolkit.renderData(fullMei + '\n ', {});
+
 		var svgtarget = document.querySelector("#" + id + '_verovio');
 		if (svgtarget) {
 			svgtarget.innerHTML = svg;
@@ -85,7 +97,6 @@ function loadMEI (id, uri, xpath, options) {
 			var myextract = extractXpath(fullMei, xpath);
 
 			// Setup the ace editor for the MEI excerpt:
-			var extractEditor = ace.edit(document.querySelector('#' + id + '_excerpt'));
 			extractEditor.$blockScrolling = Infinity;
 			// extractEditor.setTheme("ace/theme/textmate");
 			extractEditor.setTheme("ace/theme/eclipse");
@@ -93,11 +104,51 @@ function loadMEI (id, uri, xpath, options) {
 			extractEditor.setReadOnly(true);
 			extractEditor.setShowPrintMargin(false);
 			extractEditor.renderer.setShowGutter(false);
+			extractEditor.renderer.$cursorLayer.element.style.display = "none";
+			extractEditor.setOptions({ 
+				readOnly: true, 
+				highlightActiveLine: false, 
+				highlightGutterLine: false,
+				fontSize: "1em"
+			})
 			extractEditor.session.setValue(myextract);
 		} else {
 			document.querySelector('#' + id + '_excerpt_container').classList.remove('hide');
 		}
 	}, 'text');
+}
+
+
+
+//////////////////////////////
+//
+// updateSvg -- Whenever the Full Encoding view is changes, the SVG image
+//    will be re-rendered and updated if not empty.
+//
+
+function updateSvg(id, editor, options, xpath, mineditor) {
+	var contents = editor.getValue();
+	vrvToolkit.setOptions(options);
+	var svg;
+	try {
+		svg = vrvToolkit.renderData(contents + '\n ', {});
+		if (vrvToolkit.getPageCount() == 0) {
+			// console.log("ERROR processing data");
+		} else {
+			// console.log("SVG SUCCESSFULLY CREATED");
+			var svgtarget = document.querySelector("#" + id + '_verovio');
+			if (svgtarget) {
+				svgtarget.innerHTML = svg;
+			} else {
+				console.log("Cannot find svg target:", "#" + id + '_verovio');
+			}
+			var newextract = extractXpath(contents, xpath);
+			mineditor.session.setValue(newextract);
+		}
+
+	} catch(err) {
+		console.log("Error with input data, so not trying to update SVG.");
+	}
 }
 
 

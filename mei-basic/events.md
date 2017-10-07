@@ -58,8 +58,8 @@ attribute(s) are a property of the chord, but not the individual notes anymore.
 	xpath="//mei:chord"
 	scale="70"
 	minSvgHeight="182px"
-	excerptHeight="95"
-	fullEncodingHeight="500"
+	excerptHeight="140px"
+	fullEncodingHeight="500px"
 	id="chord_event"
 %}
 
