@@ -39,6 +39,11 @@ function showCode(type, id) {
 		document.querySelector('#' + id + '_full_link').classList.remove('active');
 		document.querySelector('#' + id + '_excerpt_container').classList.remove('hide');
 		document.querySelector('#' + id + '_full_container').classList.add('hide');
+
+		// Resize ace editor in order to display any new content from updateSvg().
+		if (ExtractEditorHash[id]) {
+			ExtractEditorHash[id].resize();
+		}
 	} else {
 		document.querySelector('#' + id + '_excerpt_link').classList.remove('active');
 		document.querySelector('#' + id + '_full_link').classList.add('active');
@@ -56,10 +61,15 @@ function showCode(type, id) {
 //     _includes/verovio-example.html
 //
 
+// global list of extractEdtiors needed for .resize() to update extract display
+// if it is updated in updateSvg() when editing the full MEI example.
+var ExtractEditorHash = {};
+
 function loadMEI (id, uri, xpath, options) {
 	vrvToolkit.setOptions(options);
 	var fullEditor = ace.edit(document.querySelector('#' + id + '_full'));
 	var extractEditor = ace.edit(document.querySelector('#' + id + '_excerpt'));
+	ExtractEditorHash[id] = extractEditor;
 
 	$.get('./samples/' + uri, function (fullMei) {
 
